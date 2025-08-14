@@ -1,9 +1,57 @@
-import React from 'react'
+import axios from "axios";
+import React, { useState } from "react";
 
 const Login = () => {
-  return (
-    <div>Login page</div>
-  )
-}
 
-export default Login
+  const [emailId, setEmailId] = useState("khan@gmail.com");
+  const [password, setPassword] = useState("Khan@0707");
+
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post("http://localhost:3000/login", {
+        emailId,
+        password
+      }, { withCredentials: true})
+      
+    } catch (err) { 
+      console.error(err);
+    }
+  }
+
+  return (
+    <div className="flex justify-center my-50">
+      <div className="card bg-base-300 w-96 shadow-sm">
+        <div className="card-body">
+          <h2 className="card-title justify-center">Logi  n</h2>
+          <div className="my-3">
+            <fieldset className="fieldset">
+              <legend className="fieldset-legend">Email ID</legend>
+              <input 
+                type="text"
+                value={emailId} 
+                className="input" 
+                placeholder="Type here"
+                onChange={(e) => setEmailId(e.target.value)}
+              />
+            </fieldset>
+            <fieldset className="fieldset">
+              <legend className="fieldset-legend">Password</legend>
+              <input 
+                type="text" 
+                value={password} 
+                className="input"
+                placeholder="Type here"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </fieldset> 
+          </div>
+          <div className="card-actions justify-center">
+            <button className="btn btn-primary" onClick={handleLogin}>LogIn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
