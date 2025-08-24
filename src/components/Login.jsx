@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addUser } from "./utils/userSlice";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   
@@ -27,7 +27,7 @@ const Login = () => {
     <div className="flex justify-center my-50">
       <div className="card bg-base-300 w-96 shadow-sm">
         <div className="card-body">
-          <h2 className="card-title justify-center">Logi  n</h2>
+          <h2 className="card-title justify-center">LogIn</h2>
           <div className="my-3">
             <fieldset className="fieldset">
               <legend className="fieldset-legend">Email ID</legend>

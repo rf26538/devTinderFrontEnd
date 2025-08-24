@@ -1,8 +1,9 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = () => {
     const user = useSelector((store) => store.user);
 
+    // const dispatch = useDispatch(user);
     console.log(user);
     
     return (
@@ -11,22 +12,18 @@ const NavBar = () => {
             <a className="btn btn-ghost text-xl">👨‍💻DevTinder</a>
         </div>
         <div className="flex gap-2">
-            <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-            />
+            <p>{user && "Welcome "+ user.firstName}</p>
             <div className="dropdown dropdown-end mx-5">
-            <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-            >
+                <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                >
                 <div className="w-10 rounded-full">
-                <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
+                    <img
+                        alt="Tailwind CSS Navbar component"
+                        src={ user === null ? "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" : user.photoUrl}
+                    />
                 </div>
             </div>
             <ul
