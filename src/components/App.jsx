@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Body from "../src/components/Body";
-import Login from "../src/components/Login";
-import Profile from "../src/components/Profile";
-import Signup from "../src/components/Signup";
+import Body from "./Body";
+import Login from "./Login";
+import Feed from "./Feed";
+import Profile from "./Profile";
+import Signup from "./Signup";
 import { Provider } from "react-redux";
-import appStore from "../src/utils/appStore";
+import appStore from "../utils/appStore";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<Body />}>
+            <Route path="/" element={<Feed />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />

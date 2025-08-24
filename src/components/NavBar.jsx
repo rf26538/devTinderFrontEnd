@@ -1,9 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
     const user = useSelector((store) => store.user);
 
-    // const dispatch = useDispatch(user);
     console.log(user);
     
     return (
@@ -12,7 +11,7 @@ const NavBar = () => {
             <a className="btn btn-ghost text-xl">👨‍💻DevTinder</a>
         </div>
         <div className="flex gap-2">
-            <p>{user && "Welcome "+ user.firstName}</p>
+            <p className="mt-2">{user && "Welcome "+ user.firstName}</p>
             <div className="dropdown dropdown-end mx-5">
                 <div
                     tabIndex={0}
