@@ -1,42 +1,36 @@
 import React, { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import NavBar from "./NavBar";
 import Footer from './Footer';
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from "../utils/userSlice"
-import { useNavigate } from 'react-router-dom';
-import { getTokenFromCookie } from "../utils/helper";
 
 const Body = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = getTokenFromCookie();
+  const user = useSelector((store) => store.user)
   
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        if(!token) {
-          navigate("/login");
-          return;
-        }
-  
-        const res = await axios.get(BASE_URL + "/profile/view", {
-          withCredentials: true
-        });
-  
-        dispatch(addUser(res.data))
-      } catch (err) {
-        console.error("❌ Error fetching user:", err);
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get(BASE_URL + "/profile/view", {
+        withCredentials: true
+      });
+      dispatch(addUser(res.data))
+    } catch (err) {
+      if(err.status === 401) {
+        navigate("/login")
       }
-    } 
+      console.error(err);
+    }
+  } 
 
-    if(token) {
+  useEffect(() => {
+    if(!user){
       fetchUser();
     }
-
-  },[token]);
+  },[]);
   
   return (
     <>
