@@ -7,6 +7,7 @@ const UserCard = ({user}) => {
     <div className="card bg-base-300 w-96 shadow-lg">
       <figure>
         <img
+          className="h-full w-full object-cover"
           src={photoUrl}
           alt="Shoes"
         />
