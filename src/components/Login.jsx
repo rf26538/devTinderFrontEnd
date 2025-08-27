@@ -11,10 +11,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  // const [photoUrl, setPhotoUrl] = useState("");
-  // const [age, setAge] = useState("");
-  // const [about, setAbout] = useState("");
-  // const [gender, setGender] = useState("");
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -40,15 +36,11 @@ const Login = () => {
       const res = await axios.post(BASE_URL+"/signup", {
         firstName,
         lastName,
-        // age,
-        // gender,
-        // about,
-        // photoUrl,
         emailId,
         password
       }, { withCredentials: true})
 
-      dispatch(addUser(res.data));
+      dispatch(addUser(res?.data?.data));
       navigate("/profile")
     } catch (err) { 
       setError(err?.response?.data || "Something went wrong");
@@ -85,76 +77,6 @@ const Login = () => {
                       onChange={(e) => setLastName(e.target.value)}
                     />
                   </fieldset>
-                  {/* <fieldset className="fieldset">
-                    <legend className="fieldset-legend">Photo Url</legend>
-                    <input 
-                        type="text" 
-                        value={photoUrl} 
-                        className="input"
-                        placeholder="Enter your photo url"
-                        onChange={(e) => setPhotoUrl(e.target.value)}
-                    />
-                  </fieldset>
-                  <fieldset className="fieldset">
-                      <legend className="fieldset-legend">Age</legend>
-                      <input 
-                          type="text" 
-                          value={age} 
-                          className="input"
-                          placeholder="Enter your age"
-                          onChange={(e) => setAge(e.target.value)}
-                      />
-                  </fieldset> 
-                  <fieldset className="fieldset">
-                      <legend className="fieldset-legend">Gender</legend>
-                      <div className="flex space-x-6">
-                          <label className="flex items-center space-x-2">
-                          <input 
-                              type="radio" 
-                              name="radio-6"
-                              value="male"
-                              className="radio radio-accent"
-                              checked={gender === 'male'}
-                              onChange={() => setGender('male')}  
-                          />
-                          <span>Male</span>
-                          </label>
-
-                          <label className="flex items-center space-x-2">
-                          <input 
-                              type="radio" 
-                              name="radio-6"
-                              value="female"
-                              className="radio radio-accent"
-                              checked={gender === 'female'}
-                              onChange={() => setGender('female')}  
-                          />
-                          <span>Female</span>
-                          </label>
-
-                          <label className="flex items-center space-x-2">
-                          <input 
-                              type="radio" 
-                              name="radio-6"
-                              value="other"
-                              className="radio radio-accent"
-                              checked={gender === 'other'}
-                              onChange={() => setGender('other')}  
-                          />
-                          <span>Other</span>
-                          </label>
-                      </div>
-                  </fieldset>
-                  <fieldset className="fieldset">
-                      <legend className="fieldset-legend">About</legend>
-                      <input 
-                          type="text" 
-                          value={about}
-                          className="input"
-                          placeholder="Type here"
-                          onChange={(e) => setAbout(e.target.value)}
-                      />
-                  </fieldset>  */}
                 </>
               )
             }

@@ -10,17 +10,17 @@ const Requests = () => {
 
   const fetchRequests = async() => {
     const req = await axios.get(BASE_URL + "/user/request/received", {withCredentials : true});
-    console.log(req.data.data);
+    // console.log(req.data.data);
     
     dispatch(addRequest( req.data.data));
   }
 
   const reviewRequest = async (status, _id) => {
     try {
-      const req = await axios.post(`${BASE_URL}/request/review/${status}/${_id}`, {}, {withCredentials : true})
+      await axios.post(`${BASE_URL}/request/review/${status}/${_id}`, {}, {withCredentials : true})
 
       dispatch(removeRequest(_id));
-      console.log(req.data.data);
+      // console.log(req.data.data);
       
     } catch (err) {
       console.error(err)

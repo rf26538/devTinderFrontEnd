@@ -12,7 +12,7 @@ const UserCard = ({user}) => {
     const handelSendRequest = async (status, userId) => {
       try {
         const req = await axios.post(`${BASE_URL}/request/send/${status}/${userId}`, {}, {withCredentials : true})
-        console.log((req).data.data);
+        console.log(req.data.data);
         dispatch(removeFeed(userId))
       } catch (err) {
         console.error(err)
