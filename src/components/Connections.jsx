@@ -33,8 +33,8 @@ const Connections = () => {
     <div className="text-center mt-4">
         <h1 className="text-bold text-white text-3xl">Connections</h1>
         {
-            connections.map((connection, index) => ( 
-                <div  key={"connection00" + index} className="m-4 p-4 rounded-lg bg-base-300 flex w-1/2 mx-auto">
+            connections.map((connection) => ( 
+                <div  key={connection._id} className="m-4 p-4 rounded-lg bg-base-300 flex w-1/2 mx-auto">
                     <div>
                         <img
                             className="w-20 h-20 rounded-full"
