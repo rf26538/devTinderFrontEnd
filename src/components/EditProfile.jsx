@@ -83,14 +83,45 @@ const EditProfile = ({user}) => {
                     </fieldset> 
                     <fieldset className="fieldset">
                         <legend className="fieldset-legend">Gender</legend>
-                        <input 
-                            type="text" 
-                            value={gender} 
-                            className="input"
-                            placeholder="Type here"
-                            onChange={(e) => setGender(e.target.value)}
-                        />
-                    </fieldset> 
+                        <div className="flex space-x-6">
+                            <label className="flex items-center space-x-2">
+                            <input 
+                                type="radio" 
+                                name="radio-6"
+                                value="male"
+                                className="radio radio-accent"
+                                checked={gender === 'male'}
+                                onChange={() => setGender('male')}  
+                            />
+                            <span>Male</span>
+                            </label>
+
+                            <label className="flex items-center space-x-2">
+                            <input 
+                                type="radio" 
+                                name="radio-6"
+                                value="female"
+                                className="radio radio-accent"
+                                checked={gender === 'female'}
+                                onChange={() => setGender('female')}  
+                            />
+                            <span>Female</span>
+                            </label>
+
+                            <label className="flex items-center space-x-2">
+                            <input 
+                                type="radio" 
+                                name="radio-6"
+                                value="other"
+                                className="radio radio-accent"
+                                checked={gender === 'other'}
+                                onChange={() => setGender('other')}  
+                            />
+                            <span>Other</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
                     <fieldset className="fieldset">
                         <legend className="fieldset-legend">About</legend>
                         <input 
