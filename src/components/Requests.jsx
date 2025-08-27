@@ -2,7 +2,7 @@ import axios from "axios"
 import React, { useEffect } from "react"
 import { BASE_URL } from "../utils/constants"
 import { useDispatch, useSelector } from "react-redux"
-import { addRequest } from "../utils/requestSlice"
+import { addRequest, removeRequest } from "../utils/requestSlice"
 
 const Requests = () => {
   const dispatch = useDispatch();
@@ -15,14 +15,26 @@ const Requests = () => {
     dispatch(addRequest( req.data.data));
   }
 
+  const reviewRequest = async (status, _id) => {
+    try {
+      const req = await axios.post(`${BASE_URL}/request/review/${status}/${_id}`, {}, {withCredentials : true})
+
+      dispatch(removeRequest(_id));
+      console.log(req.data.data);
+      
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   useEffect(() => {
     fetchRequests()
   }, [])
 
-     if(!requests) return;
+    if(!requests) return;
 
     if(requests.length === 0){
-        return <h1>No connection found</h1>;
+      return <h1 className="flex justify-center">No connection request found</h1>;
     } 
 
   return (
@@ -46,9 +58,11 @@ const Requests = () => {
                     <div>
                       <button 
                         className="btn btn-outline btn-primary mx-4"
+                        onClick={() => reviewRequest("accepted", request._id)}
                       >Accept</button>
                       <button 
                         className="btn btn-outline btn-secondary"
+                        onClick={() => reviewRequest("rejected", request._id)}
                       >Reject</button>
                     </div>
                 </div>
