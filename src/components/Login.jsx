@@ -49,16 +49,22 @@ const Login = () => {
   }
 
   return (
-    <div className="flex justify-center my-50">
-      <div className="card bg-base-300 w-96 shadow-sm">
-        <div className="card-body">
-          <h2 className="card-title justify-center">{isLoginForm ? "LogIn" : "SignUp"}</h2>
-          <div className="my-3">
-            {
-              !isLoginForm && (
-                <>
-                  <fieldset className="fieldset">
-                    <legend className="fieldset-legend">First Name</legend>
+    <div className="hero bg-base-200 min-h-screen ">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="text-center lg:text-left">
+          <h1 className="text-5xl font-bold">{isLoginForm ? "LogIn now!" : "SignUp now!"}</h1>
+          <p className="py-6 font-mono">
+            Single people, listen up: If you’re looking for love, want to start dating, or just keep it casual, you need to be on Tinder. With over 55 billion matches made, it’s the place to be to meet your next best match.
+          </p>
+        </div>
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+          <div className="card-body">
+            <p className="text-red-500 text-center mb-2">{error}</p>
+            <fieldset className="fieldset">
+              {
+                !isLoginForm && (
+                  <>
+                    <label className="label">First Name</label>
                     <input 
                       type="text"
                       value={firstName} 
@@ -66,33 +72,27 @@ const Login = () => {
                       placeholder="Enter your first name"
                       onChange={(e) => setFirstName(e.target.value)}
                     />
-                  </fieldset>
-                  <fieldset className="fieldset">
-                    <legend className="fieldset-legend">Last Name</legend>
+                    <label className="label">Last Name</label>
                     <input 
-                      type="text"
-                      value={lastName} 
-                      className="input" 
-                      placeholder="Enter your last name"
-                      onChange={(e) => setLastName(e.target.value)}
-                    />
-                  </fieldset>
-                </>
-              )
-            }
-            
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Email ID</legend>
+                        type="text"
+                        value={lastName} 
+                        className="input" 
+                        placeholder="Enter your last name"
+                        onChange={(e) => setLastName(e.target.value)}
+                    
+                      />
+                  </>
+                )
+              }
+              <label className="label">Email</label>
               <input 
-                type="text"
-                value={emailId} 
-                className="input" 
-                placeholder="Enter your email Id"
-                onChange={(e) => setEmailId(e.target.value)}
-              />
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Password</legend>
+                  type="text"
+                  value={emailId} 
+                  className="input" 
+                  placeholder="Enter your email"
+                  onChange={(e) => setEmailId(e.target.value)}
+                />
+              <label className="label">Password</label>
               <input 
                 type="text" 
                 value={password} 
@@ -100,17 +100,15 @@ const Login = () => {
                 placeholder="Enter your password"
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </fieldset> 
+              <div><a className="link link-hover">Forgot password?</a></div>
+              <button className="btn btn-neutral mt-4" onClick={isLoginForm ? handleLogin : handleSignUp}>{isLoginForm ? "LogIn" : "SignUp"}</button>
+              <p className="cursor-pointer underline text-center" onClick={() => setIsLoginForm(value => !value)}>
+                {isLoginForm 
+                  ? "New User? Signup Here"
+                  : "Existing User? Login Here"}
+              </p>
+            </fieldset>
           </div>
-          <p className="text-red-500 text-center mb-2">{error}</p>
-          <div className="card-actions justify-center">
-            <button className="btn btn-primary" onClick={isLoginForm ? handleLogin : handleSignUp}>{isLoginForm ? "LogIn" : "SignUp"}</button>
-          </div>
-          <p className="cursor-pointer underline text-center" onClick={() => setIsLoginForm(value => !value)}>
-            {isLoginForm 
-              ? "New User? Signup Here"
-              : "Existing User? Login Here"}
-          </p>
         </div>
       </div>
     </div>
